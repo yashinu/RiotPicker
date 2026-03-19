@@ -1,38 +1,38 @@
 # Riot Picker
 
-League of Legends ve Valorant icin otomatik sampiyon/ajan secim araci.
-
 Auto champion/agent selection tool for League of Legends and Valorant.
 
-## Ozellikler / Features
+**[Turkce README](README_TR.md)**
+
+## Features
 
 ### League of Legends
-- **Otomatik Mac Kabul** - Mac bulunduğunda otomatik kabul
-- **Otomatik Sampiyon Secimi** - Rol bazli oncelik listesi ile otomatik pick ve kilitleme
-- **Otomatik Yasaklama** - Oncelik sirasina gore otomatik ban
-- **Otomatik Run Sayfasi** - Kilitlenen sampiyonun adini iceren run sayfasini otomatik secer
+- **Auto Accept** - Automatically accepts when a match is found
+- **Auto Champion Pick** - Picks and locks champions based on role-specific priority lists
+- **Auto Ban** - Bans champions in priority order
+- **Auto Rune Page** - Automatically selects the rune page matching the locked champion's name
 
 ### Valorant
-- **Otomatik Ajan Secimi** - Oncelik listesindeki ilk musait ajani otomatik secer ve kilitler
+- **Auto Agent Select** - Automatically selects and locks the first available agent from your priority list
 
-### Genel
-- **Surukleme ile Siralama** - Oncelik listelerinde drag-and-drop
-- **Dil Destegi** - Turkce / English
-- **Tek .exe** - Kurulum gerektirmez, sifir bagimsizlik
-- **Dusuk Kaynak Tuketimi** - Adaptif polling ile minimum CPU/RAM kullanimi
+### General
+- **Drag & Drop Reorder** - Reorder priority lists by dragging
+- **Language Support** - English / Turkish
+- **Single .exe** - No installation required, zero dependencies
+- **Low Resource Usage** - Adaptive polling for minimum CPU/RAM usage
 
-## Kurulum / Installation
+## Installation
 
-1. [Releases](../../releases) sayfasindan `RiotPicker.exe` dosyasini indirin
-2. Calistirin - kurulum gerekmez
+1. Download `RiotPicker.exe` from the [Releases](../../releases) page
+2. Run it - no installation needed
 
-## Kullanim / Usage
+## Usage
 
-1. LoL veya Valorant istemcisini acin
-2. RiotPicker'i calistirin
-3. LoL/VAL toggle'larini acin
-4. Sampiyon/ajan oncelik listelerinizi olusturun
-5. Macin baslamasini bekleyin - gerisini RiotPicker halleder
+1. Open the LoL or Valorant client
+2. Run RiotPicker
+3. Enable LoL/VAL toggles
+4. Set up your champion/agent priority lists
+5. Wait for a match - RiotPicker handles the rest
 
 ## Build
 
@@ -40,16 +40,16 @@ Auto champion/agent selection tool for League of Legends and Valorant.
 # Debug
 dotnet run --project RiotPicker
 
-# Release (tek exe)
+# Release (single exe)
 dotnet publish RiotPicker/RiotPicker.csproj -c Release -o ./publish
 ```
 
-## Teknoloji
+## Tech Stack
 
 - **C# / .NET 8** + **Avalonia UI 11**
 - Self-contained single-file publish (~38MB)
 - LCU API (LoL) + Valorant Local API
 
-## Lisans / License
+## License
 
 MIT
