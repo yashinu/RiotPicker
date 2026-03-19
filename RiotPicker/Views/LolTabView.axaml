@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:RiotPicker.Controls"
+             xmlns:vm="clr-namespace:RiotPicker.ViewModels"
+             x:Class="RiotPicker.Views.LolTabView"
+             x:DataType="vm:LolViewModel">
+
+    <Grid Margin="10,8" RowDefinitions="Auto,*">
+
+        <!-- Toggle row -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5,0,0,8" Spacing="16">
+            <!-- Auto-Accept toggle -->
+            <StackPanel Orientation="Horizontal">
+                <ToggleSwitch IsChecked="{Binding AutoAccept, Mode=TwoWay}"
+                              OnContent="" OffContent=""
+                              VerticalAlignment="Center"/>
+                <TextBlock x:Name="AutoAcceptLabel" Text="Otomatik Mac Kabul"
+                           Foreground="#FFE0E0E0" FontSize="13"
+                           VerticalAlignment="Center" Margin="4,0,0,0"/>
+            </StackPanel>
+            <!-- Auto-Rune toggle -->
+            <StackPanel Orientation="Horizontal">
+                <ToggleSwitch IsChecked="{Binding AutoRune, Mode=TwoWay}"
+                              OnContent="" OffContent=""
+                              VerticalAlignment="Center"/>
+                <TextBlock x:Name="AutoRuneLabel" Text="Otomatik Run"
+                           Foreground="#FFE0E0E0" FontSize="13"
+                           VerticalAlignment="Center" Margin="4,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Sub-tabs -->
+        <TabControl Grid.Row="1">
+            <TabItem x:Name="PickTab" Header="Secim">
+                <Grid Margin="8" RowDefinitions="Auto,*">
+                    <!-- Role selector -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8" Spacing="4">
+                        <TextBlock x:Name="RoleLabel" Text="Koridor:" Foreground="#FFE0E0E0"
+                                   FontSize="13" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ListBox x:Name="RoleSelector"
+                                 SelectedIndex="{Binding SelectedRoleIndex, Mode=TwoWay}"
+                                 Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="4"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem">
+                                    <Setter Property="Padding" Value="10,5"/>
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontSize" Value="12"/>
+                                    <Setter Property="Foreground" Value="#FFE0E0E0"/>
+                                    <Setter Property="Background" Value="#FF2A2A2A"/>
+                                    <Setter Property="MinHeight" Value="0"/>
+                                    <Setter Property="MinWidth" Value="0"/>
+                                </Style>
+                                <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="#FFE74C3C"/>
+                                </Style>
+                                <Style Selector="ListBoxItem:selected">
+                                    <Setter Property="Background" Value="#FFE74C3C"/>
+                                </Style>
+                            </ListBox.Styles>
+                            <ListBoxItem Content="TOP"/>
+                            <ListBoxItem Content="JGL"/>
+                            <ListBoxItem Content="MID"/>
+                            <ListBoxItem Content="ADC"/>
+                            <ListBoxItem Content="SUP"/>
+                        </ListBox>
+                    </StackPanel>
+
+                    <!-- Pick list -->
+                    <controls:PriorityListControl Grid.Row="1" x:Name="PickList"
+                                                   ItemsSource="{Binding PickItems}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="BanTab" Header="Yasaklama">
+                <Grid Margin="8" RowDefinitions="Auto,*">
+                    <TextBlock x:Name="BanInfoText" Grid.Row="0"
+                               Foreground="#FF888888" FontSize="11" Margin="0,0,0,8"
+                               TextWrapping="Wrap"/>
+
+                    <controls:PriorityListControl Grid.Row="1" x:Name="BanList"
+                                                   ItemsSource="{Binding BanItems}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

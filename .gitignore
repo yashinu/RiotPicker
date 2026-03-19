@@ -1,0 +1,24 @@
+## .NET
+bin/
+obj/
+*.pdb
+*.user
+*.suo
+*.cache
+
+## Publish outputs
+publish*/
+dist/
+
+## IDE
+.vs/
+.idea/
+*.swp
+*~
+
+## OS
+Thumbs.db
+.DS_Store
+
+## Debug
+debug.log

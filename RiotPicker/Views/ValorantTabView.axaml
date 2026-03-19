@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:RiotPicker.Controls"
+             xmlns:vm="clr-namespace:RiotPicker.ViewModels"
+             x:Class="RiotPicker.Views.ValorantTabView"
+             x:DataType="vm:ValorantViewModel">
+
+    <Grid Margin="10,8" RowDefinitions="Auto,*,Auto">
+
+        <!-- Info text -->
+        <TextBlock x:Name="InfoText" Grid.Row="0"
+                   Foreground="#FF888888" FontSize="11" Margin="5,0,0,8"/>
+
+        <!-- Agent priority list -->
+        <controls:PriorityListControl Grid.Row="1" x:Name="AgentList"
+                                       ItemsSource="{Binding AgentItems}"/>
+
+        <!-- Warning -->
+        <Border Grid.Row="2" Background="#FF4A3F00" CornerRadius="8"
+                Margin="0,8,0,0" Padding="10,6">
+            <TextBlock x:Name="WarningText" Foreground="#FFFFC107" FontSize="11"
+                       TextWrapping="Wrap"/>
+        </Border>
+    </Grid>
+</UserControl>
