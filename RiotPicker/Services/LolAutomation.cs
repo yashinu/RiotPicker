@@ -16,6 +16,7 @@ public class LolAutomation
     private int _pickIntentChamp;
     private int _banIntentChampId;
     private string? _lastPhase;
+    private DateTime? _champSelectEnteredAt;
 
     public LolAutomation(LcuConnector connector, ConfigService config,
         Action<string, string>? statusCallback = null)
@@ -76,6 +77,10 @@ public class LolAutomation
                 if (_lastPhase == "ChampSelect" && phase != "ChampSelect")
                 {
                     ResetState();
+                }
+                if (_lastPhase != "ChampSelect" && phase == "ChampSelect")
+                {
+                    _champSelectEnteredAt = DateTime.UtcNow;
                 }
                 _lastPhase = phase;
 
@@ -164,6 +169,7 @@ public class LolAutomation
         _runeSet = false;
         _pickIntentChamp = 0;
         _banIntentChampId = 0;
+        _champSelectEnteredAt = null;
     }
 
     private async Task HandleReadyCheckAsync()
@@ -370,6 +376,13 @@ public class LolAutomation
             // === DECLARING PHASE ===
             if (!isActive)
             {
+                // 7 saniye cooldown - ChampSelect'e girildiginde hemen intent gonderme
+                if (_champSelectEnteredAt.HasValue
+                    && (DateTime.UtcNow - _champSelectEnteredAt.Value).TotalSeconds < 7)
+                {
+                    continue;
+                }
+
                 if (actionType == "ban" && !_banCompleted)
                 {
                     var completedBans = GetBannedIds(session);
